@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    name: myPod
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+
+
+#kubectl create -f pod.yaml
+#kubectl get pods
+#kubectl describe pod nginx
+#kubectl delete pod nginx
+#kubectl apply -f pod.yaml (after editing the file)
