@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myreplicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      name: proxy
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:latest
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+
+
+
+#kubectl get replicaset
+#kubectl create -f replicaset.yaml
+#brew install watch (to see the changes in real time)
+#watch kubectl get pods
+#kubectl delete pod {pod_name}
+#we will see that it has instantly created a new pod without any downtime
+
+#kubectl scale --replicas=6 replicaset {replicaset_name} -> to scale up the replicaset
+#kubectl delete replicaset {replicaset_name} -> to delete replicaset and pods associated with it 
+
+
+
+
+
+#kubectl apply -f replicaset.yaml (after editing the file)
