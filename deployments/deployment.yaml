@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydeployment
+  labels:
+    name: mydeployment
+spec:
+  selector:
+    matchLabels:
+      server: nginx
+  replicas: 5
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        server: nginx
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx:latest
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+#kubectl get deployments
+#kubectl create -f deployment.yaml
+#kubectl apply -f deployment.yaml (after editing the file)
+#kubectl delete deployment {deployment_name}
+#kubectl scale --replicas=6 deployment {deployment_name} -> to scale up the deployment
