@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: challenge
+  labels:
+    name: challenge
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      os: ubuntu
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        os: ubuntu
+    spec:
+      containers:
+        - name: ubuntu
+          image: ubuntu:latest
+          resources:
+            limits:
+              memory: "500m"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080
+#CHALLENGE
+#Create a new YAML file: deployment-challenge.yaml
+#Create a deployment
+# Deployment name: challenge
+#Must have 3 running pods
+#image will be ubuntu
+# label: os: ubuntu
+# Runs on port 8080
+# Must not use more than 500 mb of RAM, CPU can be set to 500m
