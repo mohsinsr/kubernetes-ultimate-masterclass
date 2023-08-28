@@ -22,9 +22,6 @@ spec:
               cpu: "500m"
           ports:
             - containerPort: 80
-
-
-
 #kubectl get replicaset
 #kubectl create -f replicaset.yaml
 #brew install watch (to see the changes in real time)
@@ -33,10 +30,6 @@ spec:
 #we will see that it has instantly created a new pod without any downtime
 
 #kubectl scale --replicas=6 replicaset {replicaset_name} -> to scale up the replicaset
-#kubectl delete replicaset {replicaset_name} -> to delete replicaset and pods associated with it 
-
-
-
-
+#kubectl delete replicaset {replicaset_name} -> to delete replicaset and pods associated with it
 
 #kubectl apply -f replicaset.yaml (after editing the file)
